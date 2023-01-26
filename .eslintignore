@@ -1,2 +1,8 @@
 node_modules
 __generated__
+.history
+public
+dist
+mock
+vite.config.ts
+**/*.json

@@ -30,7 +30,7 @@
             "name": "RTK Query",
             "description": "RTK Query is a powerful data fetching and caching tool",
             "url": "https://redux-toolkit.js.org/rtk-query/overview"
-        },
+        },  
         {
             "name": "next-translate",
             "description": "Tiny and powerful i18n tools (Next plugin + API) to translate your Next.js pages.",

@@ -1,22 +1,18 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { setupListeners } from "@reduxjs/toolkit/query";
-import { pokemonApi } from "./services/pokemon";
-import { useDispatch } from "react-redux";
-
-import rootReducer from "./reducers";
+import { configureStore } from '@reduxjs/toolkit'
+import { setupListeners } from '@reduxjs/toolkit/query/react'
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import { baseAPI } from './services/baseApi'
 
 export const store = configureStore({
-    reducer: {
-        rootReducer,
-        [pokemonApi.reducerPath]: pokemonApi.reducer,
-    },
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(pokemonApi.middleware),
-});
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(baseAPI.middleware),
+  reducer: {
+    [baseAPI.reducerPath]: baseAPI.reducer,
+  },
+})
 
-setupListeners(store.dispatch);
+export type AppDispatch = typeof store.dispatch
+export type RootState = ReturnType<typeof store.getState>
+export const useTypedDispatch = () => useDispatch<AppDispatch>()
+export const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector
 
-export type AppDispatch = typeof store.dispatch;
-export const useAppDispatch = () => useDispatch<AppDispatch>();
-
-export default store;
+setupListeners(store.dispatch)

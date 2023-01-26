@@ -1,22 +1,18 @@
-import React from "react";
+import React from 'react'
 
-import { Header, Main, Cards, Footer } from "@components";
+import {
+  Header, Main, Cards, Footer,
+} from '@components'
 
 const Home: React.FC = () => {
-    return (
-        <div
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                minHeight: "100vh",
-            }}
-        >
-            <Header />
-            <Main />
-            <Cards />
-            <Footer />
-        </div>
-    );
-};
+  return (
+    <div className="flex flex-col justify-center m-h-[100vh]">
+      <Header />
+      <Main />
+      <Cards />
+      <Footer />
+    </div>
+  )
+}
 
-export default Home;
+export default Home
