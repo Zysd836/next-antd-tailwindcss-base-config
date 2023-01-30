@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Button } from '@components'
 
-type PropsT={}
+type PropsT = {}
 export const Main: React.FC<PropsT> = () => {
   return (
     <div
@@ -22,7 +22,9 @@ export const Main: React.FC<PropsT> = () => {
         </h1>
         <div></div>
         <p style={{ fontSize: 18 }}>
-          The frontend boilerplate with superpowers!
+          The frontend boildcss sd ssdddddddddcsdcdvsssssssssssssssssssssssssssssssssssssssss
+          sssssssssssssssssssssssssssssssssssssssss
+          ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddderplate with  superpowers!
         </p>
         <Button type="primary" size="large" className="text-red-400">
           Docs

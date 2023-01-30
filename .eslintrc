@@ -52,7 +52,7 @@
     "react/no-array-index-key": "off",
     "no-nested-ternary": "off",
     "consistent-return": "off",
-    "max-len": ["warn", { "code": 120 }],
+    "max-len": ["warn", { "code": 120, "tabWidth": 2 }],
     "no-param-reassign": "off",
     "array-callback-return": "off",
     "react/no-did-update-set-state": "off",
@@ -82,6 +82,9 @@
     "react/jsx-closing-tag-location": 1,
     "react/button-has-type": "off",
     "import/no-extraneous-dependencies": "off",
-    "react/require-default-props": "off"
+    "react/require-default-props": "off",
+    "no-trailing-spaces": "warn",
+    "no-multi-spaces": "warn",
+    "space-infix-ops": ["warn", { "int32Hint": false }]
   }
 }
