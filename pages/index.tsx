@@ -1,18 +1,12 @@
 import React from 'react'
+import Home from './home'
 
-import {
-  Header, Main, Cards, Footer,
-} from '@components'
-
-const Home: React.FC = () => {
+const Index: React.FC = () => {
   return (
     <div className="flex flex-col justify-center m-h-[100vh]">
-      <Header />
-      <Main />
-      <Cards />
-      <Footer />
+      <Home />
     </div>
   )
 }
 
-export default Home
+export default Index

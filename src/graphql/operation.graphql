@@ -1,0 +1,1224 @@
+# Client
+query Me {
+  me {
+    address
+    avatar {
+      thumbnailUrl
+    }
+    description
+    email
+    facebookUrl
+    id
+    linkedinUrl
+    name
+    role
+    referralCode
+    practicePoints
+    practiceRank
+    donePracticesCount
+    referredUsersCount
+    referrer {
+      email
+      id
+      name
+      referralCode
+      referredUsersCount
+    }
+  }
+}
+
+query OwnedCourses {
+  ownedCourses {
+    cover {
+      id
+      thumbnailUrl
+    }
+    id
+    title
+    slug
+    lessonsCount
+    ownedProgress
+    readingTopicSection {
+      id
+      sectionItem {
+        ... on CodingExam {
+          slug
+        }
+        ... on CourseLesson {
+          slug
+        }
+        ... on GapFillExam {
+          slug
+        }
+        ... on OrganizedExam {
+          slug
+        }
+        ... on QuizExam {
+          slug
+        }
+      }
+    }
+  }
+}
+
+query OwnedFavoriteCourses(
+  $search: String
+  $fields: [JSON!]
+  $filter: JSON
+  $order: JSON
+  $paginate: PaginateInput
+) {
+  ownedFavoriteCourses(
+    search: $search
+    fields: $fields
+    filter: $filter
+    order: $order
+    paginate: $paginate
+  ) {
+    node {
+      course {
+        cover {
+          id
+          thumbnailUrl
+        }
+        id
+        title
+        slug
+        lessonsCount
+        ownedProgress
+        readingTopicSection {
+          id
+          sectionItem {
+            ... on CodingExam {
+              slug
+            }
+            ... on CourseLesson {
+              slug
+            }
+            ... on GapFillExam {
+              slug
+            }
+            ... on OrganizedExam {
+              slug
+            }
+            ... on QuizExam {
+              slug
+            }
+          }
+        }
+      }
+      courseId
+      id
+    }
+    pageInfo {
+      totalCount
+    }
+  }
+}
+
+query Courses(
+  $search: String
+  $fields: [JSON!]
+  $filter: JSON
+  $order: JSON
+  $paginate: PaginateInput
+) {
+  courses(
+    search: $search
+    fields: $fields
+    filter: $filter
+    order: $order
+    paginate: $paginate
+  ) {
+    node {
+      cover {
+        id
+        thumbnailUrl
+      }
+      id
+      title
+      slug
+      lessonsCount
+    }
+    pageInfo {
+      totalCount
+    }
+  }
+}
+
+query Course($id: ID!) {
+  course(id: $id) {
+    categories {
+      id
+      name
+    }
+    cover {
+      id
+      thumbnailUrl
+    }
+    difficulty
+    id
+    title
+    tagList
+    slug
+    comments {
+      contentHtml
+      id
+      ownedVote {
+        count
+      }
+      votes {
+        count
+      }
+      votesSum
+      user {
+        avatar {
+          id
+          thumbnailUrl
+        }
+        name
+      }
+      updatedAt
+    }
+    description
+    duration
+    isDraft
+    isFavorite
+    isFeatured
+    isJoined
+    isTrending
+    lessonsCount
+    meta
+    examsCount
+    ownedProgress
+    totalPoints
+    topics {
+      id
+      name
+      summary
+      topicSections {
+        codeSuggestions {
+          id
+          language {
+            canJudge
+            id
+            name
+            reactAceKey
+          }
+          languageId
+          topicSectionId
+          cost
+        }
+        id
+        sampleCodes {
+          id
+          language {
+            canJudge
+            id
+            name
+            reactAceKey
+          }
+          languageId
+          topicSectionId
+        }
+        sectionItem {
+          ... on CodingExam {
+            description
+            difficulty
+            id
+            limit {
+              memoryLimit
+              sourceLimit
+              timeLimit
+            }
+            maxPoints
+            slug
+            tagList
+            title
+          }
+          ... on CourseLesson {
+            content
+            duration
+            featureImage {
+              downloadUrl
+              filename
+              id
+              metadata
+              thumbnailUrl
+            }
+            id
+            slug
+            tagList
+            title
+          }
+          ... on GapFillExam {
+            content
+            description
+            difficulty
+            id
+            maxPoints
+            slug
+            tagList
+            title
+          }
+          ... on OrganizedExam {
+            canRunCode
+            content
+            description
+            difficulty
+            id
+            maxPoints
+            slug
+            tagList
+            title
+          }
+          ... on QuizExam {
+            description
+            difficulty
+            id
+            maxPoints
+            slug
+            tagList
+            title
+            quizQuestBridges {
+              id
+              quizQuest {
+                description
+                id
+                isSingleChoice
+                name
+                options {
+                  content
+                  id
+                }
+                title
+              }
+            }
+          }
+        }
+      }
+    }
+    readingTopicSection {
+      sectionItem {
+        ... on CodingExam {
+          slug
+        }
+        ... on CourseLesson {
+          slug
+        }
+        ... on GapFillExam {
+          slug
+        }
+        ... on OrganizedExam {
+          slug
+        }
+        ... on QuizExam {
+          slug
+        }
+      }
+    }
+  }
+}
+
+query Practices(
+  $search: String
+  $fields: [JSON!]
+  $filter: JSON
+  $order: JSON
+  $paginate: PaginateInput
+) {
+  practices(
+    search: $search
+    fields: $fields
+    filter: $filter
+    order: $order
+    paginate: $paginate
+  ) {
+    node {
+      cover {
+        id
+        thumbnailUrl
+      }
+      id
+      title
+      slug
+      lessonsCount
+      examsCount
+      ownedProgress
+      totalPoints
+    }
+    pageInfo {
+      totalCount
+    }
+  }
+}
+
+query Practice($id: ID!) {
+  practice(id: $id) {
+    categories {
+      id
+      name
+    }
+    cover {
+      id
+      thumbnailUrl
+    }
+    difficulty
+    id
+    title
+    tagList
+    slug
+    comments {
+      contentHtml
+      id
+      ownedVote {
+        count
+      }
+      votes {
+        count
+      }
+      votesSum
+      user {
+        avatar {
+          id
+          thumbnailUrl
+        }
+        name
+      }
+      updatedAt
+    }
+    description
+    duration
+    isDraft
+    isFeatured
+    isJoined
+    isTrending
+    lessonsCount
+    meta
+    examsCount
+    ownedProgress
+    totalPoints
+    topics {
+      id
+    }
+    languages {
+      canJudge
+      id
+      name
+      reactAceKey
+    }
+  }
+}
+
+query PracticeRankList(
+  $search: String
+  $fields: [JSON!]
+  $filter: JSON
+  $order: JSON
+  $paginate: PaginateInput
+) {
+  practiceRankList(
+    search: $search
+    fields: $fields
+    filter: $filter
+    order: $order
+    paginate: $paginate
+  ) {
+    node {
+      avatar {
+        id
+        thumbnailUrl
+      }
+      id
+      name
+      practicePoints
+    }
+    pageInfo {
+      totalCount
+    }
+  }
+}
+
+mutation JoinProgram($input: JoinProgramMutationInput!) {
+  joinProgram(input: $input) {
+    programsUser {
+      id
+      programId
+      userId
+    }
+  }
+}
+
+mutation ViewTopicSection($input: ViewTopicSectionMutationInput!) {
+  viewTopicSection(input: $input) {
+    topicSectionView {
+      id
+      topicSectionId
+      userId
+    }
+  }
+}
+
+mutation CreateComment($input: CreateCommentMutationInput!) {
+  createComment(input: $input) {
+    comment {
+      id
+    }
+  }
+}
+
+mutation RemoveCoursesFromFavorite($input: RemoveCoursesFromFavoriteMutationInput!) {
+  removeCoursesFromFavorite(input: $input) {
+    status
+  }
+}
+
+mutation CreateFavoriteCourse($input: CreateFavoriteCourseMutationInput!) {
+  createFavoriteCourse(input: $input) {
+    favoriteCourse {
+      id
+    }
+  }
+}
+
+mutation CreateCodeSuggestionRequest($input: CreateCodeSuggestionRequestMutationInput!) {
+  createCodeSuggestionRequest(input: $input) {
+    codeSuggestionRequest {
+      codeSuggestionId
+      content
+      cost
+      id
+    }
+  }
+}
+
+query CourseLesson($id: ID!  ) {
+  courseLesson(id: $id) {
+    content
+    duration
+    featureImage {
+      id
+      thumbnailUrl
+    }
+    id
+    slug
+    tagList
+    title
+  }
+}
+
+query QuizExam($id: ID!) {
+  quizExam(id: $id) {
+    description
+    difficulty
+    id
+    maxPoints
+    slug
+    tagList
+    title
+    quizQuestBridges {
+      id
+      quizQuest {
+        id
+        description
+        isSingleChoice
+        name
+        options {
+          id
+          content
+          isChecked
+        }
+        title
+      }
+      rowOrder
+    }
+  }
+}
+
+query QuizQuest($id: ID!) {
+  quizQuest(id: $id) {
+    description
+    id
+    isSingleChoice
+    name
+    options {
+      content
+      id
+      isChecked
+    }
+    title
+  }
+}
+
+mutation CreateQuizExamSubmission($input: CreateQuizExamSubmissionMutationInput!) {
+  createQuizExamSubmission(input: $input) {
+    quizExamSubmission {
+      id
+      correctRatio
+      judgedResult {
+        checkedOptionIds
+        isCorrect
+        quizQuestId
+      }
+      stat {
+        correctCount
+        totalCount
+      }
+      totalPoints
+    }
+  }
+}
+
+query GapFillExam($id: ID!, $programId: ID!) {
+  gapFillExam(id: $id) {
+    content
+    description
+    difficulty
+    gapValues
+    id
+    isIgnoreCase
+    maxPoints
+    slug
+    tagList
+    title
+    topicSection(programId: $programId) {
+      codeSuggestions {
+        id
+        cost
+      }
+    }
+  }
+}
+
+mutation CreateGapFillExamSubmission($input: CreateGapFillExamSubmissionMutationInput!) {
+  createGapFillExamSubmission(input: $input) {
+    gapFillExamSubmission {
+      id
+      correctRatio
+      filledValues
+      judgedResult {
+        index
+        isCorrect
+      }
+      stat {
+        correctCount
+        totalCount
+      }
+      totalPoints
+    }
+  }
+}
+
+query CodingExam($id: ID!, $programId: ID!) {
+  codingExam(id: $id) {
+    description
+    difficulty
+    limit {
+      memoryLimit
+      timeLimit
+      sourceLimit
+    }
+    id
+    maxPoints
+    slug
+    tagList
+    testCases {
+      input
+      output
+    }
+    testCasesFile {
+      id
+      metadata
+      filename
+    }
+    title
+    topicSection(programId: $programId) {
+      codeSuggestions {
+        cost
+        id
+        language {
+          canJudge
+          id
+          name
+          reactAceKey
+        }
+        languageId
+        topicSectionId
+      }
+      sampleCodes {
+        id
+        language {
+          canJudge
+          id
+          name
+          reactAceKey
+        }
+        languageId
+        topicSectionId
+        code
+      }
+    }
+  }
+}
+
+mutation CreateCodingExamSubmission($input: CreateCodingExamSubmissionMutationInput!) {
+  createCodingExamSubmission(input: $input) {
+    codingExamSubmission {
+      caseResults
+      correctRatio
+      error {
+        message
+        type
+      }
+      id
+      isJudged
+      language {
+        canJudge
+        id
+        name
+        reactAceKey
+      }
+      src
+      stat {
+        correctCount
+        totalCount
+      }
+      totalPoints
+    }
+  }
+}
+
+subscription CodingExamSubmissionJudged($id: ID!) {
+  codingExamSubmissionJudged(id: $id) {
+    caseResults
+    correctRatio
+    error {
+      message
+      type
+    }
+    id
+    isJudged
+    language {
+      canJudge
+      createdAt
+      id
+      name
+      reactAceKey
+    }
+    src
+    stat {
+      correctCount
+      totalCount
+    }
+    totalPoints
+  }
+}
+
+query OrganizedExam($id: ID!, $programId: ID!) {
+  organizedExam(id: $id) {
+    allowList
+    canRunCode
+    content
+    maxPoints
+    id
+    difficulty
+    description
+    denyList
+    title
+    tagList
+    slug
+    topicSection(programId: $programId) {
+      codeSuggestions {
+        cost
+        id
+        language {
+          canJudge
+          id
+          name
+          reactAceKey
+        }
+        languageId
+        topicSectionId
+      }
+      sampleCodes {
+        id
+        language {
+          canJudge
+          id
+          name
+          reactAceKey
+        }
+        languageId
+        topicSectionId
+        code
+      }
+    }
+  }
+}
+
+mutation CreateOrganizedExamSubmission($input: CreateOrganizedExamSubmissionMutationInput!) {
+  createOrganizedExamSubmission(input: $input) {
+    organizedExamSubmission {
+      content
+      correctRatio
+      id
+      mistake {
+        missingKeyword
+        prohibitKeywords
+      }
+      stat {
+        correctCount
+        totalCount
+      }
+      totalPoints
+    }
+  }
+}
+
+mutation JdoodleExecute($input: JdoodleExecuteMutationInput!) {
+  jdoodleExecute(input: $input) {
+    response {
+      body
+      status
+    }
+  }
+}
+
+query Categories(
+  $search: String
+  $fields: [JSON!]
+  $filter: JSON
+  $order: JSON
+  $paginate: PaginateInput  
+) {
+  categories(
+    search: $search
+    fields: $fields
+    filter: $filter
+    order: $order
+    paginate: $paginate
+  ) {
+    node {
+      id
+      name
+      slug
+    }
+  }
+}
+
+query Tags(
+  $search: String
+  $fields: [JSON!]
+  $filter: JSON
+  $order: JSON
+  $paginate: PaginateInput 
+) {
+  tags(
+    search: $search
+    fields: $fields
+    filter: $filter
+    order: $order
+    paginate: $paginate
+  ) {
+    node {
+      id
+      name
+    }
+  }
+}
+
+query AllLanguages {
+  allLanguages {
+    id
+    name
+    reactAceKey
+  }
+}
+
+# LearningPaths
+query LearningPaths(
+  $search: String
+  $fields: [JSON!]
+  $filter: JSON
+  $order: JSON
+  $paginate: PaginateInput
+) {
+  learningPaths(
+    search: $search
+    fields: $fields
+    filter: $filter
+    order: $order
+    paginate: $paginate
+  ) {
+    node {
+      id
+      slug
+      title
+    }
+    pageInfo {
+      totalCount
+    }
+  }
+}
+
+query LearningPath($id: ID!) {
+  learningPath(id: $id) {
+    benefits
+    benefitsSummary
+    cover {
+      id
+      thumbnailUrl
+    }
+    description
+    difficulty
+    duration
+    id
+    includes
+    isJoined
+    learningPathsPrograms {
+      program {
+        id
+        slug
+        title
+        description
+      }
+      id
+    }
+    meta
+    ownedProgress
+    projects
+    reading {
+      courseSlug
+      sectionItemSlug
+    }
+    slug
+    summary
+    tagList
+    target
+    title
+  }
+}
+
+mutation JoinLearningPath($input: JoinLearningPathMutationInput!) {
+  joinLearningPath(input: $input) {
+    status
+  }
+}
+
+query Users(
+  $search: String
+  $fields: [JSON!]
+  $filter: JSON
+  $order: JSON
+  $paginate: PaginateInput
+) {
+  users(
+    search: $search
+    fields: $fields
+    filter: $filter
+    order: $order
+    paginate: $paginate
+  ) {
+    node {
+      avatar {
+        id
+        thumbnailUrl
+      }
+      faqVotes
+      id
+      name
+      practicePoints
+      donePracticesCount
+      referredUsersCount
+    }
+    pageInfo {
+      totalCount
+    }
+  }
+}
+
+query Posts(
+  $search: String
+  $fields: [JSON!]
+  $filter: JSON
+  $order: JSON
+  $paginate: PaginateInput
+) {
+  posts(
+    search: $search
+    fields: $fields
+    filter: $filter
+    order: $order
+    paginate: $paginate
+  ) {
+    node {
+      categories {
+        id
+        name
+      }
+      comments {
+        contentHtml
+        id
+        ownedVote {
+          count
+        }
+        user {
+          avatar {
+            id
+            thumbnailUrl
+          }
+          id
+          name
+        }
+        votes {
+          count
+        }
+        votesSum
+      }
+      content
+      id
+      meta
+      owner {
+        id
+        name
+      }
+      slug
+      tagList
+      thumbnail {
+        id
+        downloadUrl
+      }
+      title
+      viewsCount
+      votesSum
+      updatedAt
+    }
+    pageInfo {
+      totalCount
+    }
+  }
+}
+
+query Post($id: ID!) {
+  post(id: $id) {
+    categories {
+      id
+      name
+      slug
+    }
+    comments {
+      contentHtml
+      id
+      ownedVote {
+        count
+      }
+      user {
+        avatar {
+          id
+          thumbnailUrl
+        }
+        id
+        name
+      }
+      votes {
+        count
+      }
+      votesSum
+      updatedAt
+    }
+    content
+    id
+    meta
+    owner {
+      id
+      name
+    }
+    slug
+    tagList
+    thumbnail {
+      id
+      thumbnailUrl
+    }
+    title
+    relatedBridges {
+      createdAt
+      id
+      rowOrder
+      to {
+        ... on Post {
+        categories {
+        id
+        name
+      }
+      comments {
+        contentHtml
+        id
+        ownedVote {
+          count
+        }
+        user {
+          avatar {
+            id
+            thumbnailUrl
+          }
+          id
+          name
+        }
+        votes {
+          count
+        }
+        votesSum
+      }
+      content
+      id
+      meta
+      owner {
+        id
+        name
+      }
+      slug
+      tagList
+      thumbnail {
+        id
+        downloadUrl
+      }
+      title
+      viewsCount
+      votesSum
+      updatedAt
+        }
+      }
+      toId
+      toType
+      updatedAt
+    }
+    viewsCount
+    votes {
+      count
+    }
+    votesSum
+  }
+}
+
+mutation VotePost($input: VotePostMutationInput!) {
+  votePost(input: $input) {
+    vote {
+      count
+    }
+  }
+}
+
+mutation VoteComment($input: VoteCommentMutationInput!) {
+  voteComment(input: $input) {
+    vote {
+      count
+    }
+  }
+}
+query TopicTopicSections($topicId: ID!, $paginate: PaginateInput) {
+  topicTopicSections(topicId: $topicId, paginate: $paginate) {
+    node {
+      codeSuggestions {
+        content
+        cost
+        createdAt
+        id
+        language {
+          canJudge
+          createdAt
+          id
+          name
+          reactAceKey
+          updatedAt
+        }
+        languageId
+        topicSectionId
+        updatedAt
+      }
+      createdAt
+      id
+      sectionItem {
+          ... on CodingExam {
+            description
+            difficulty
+            id
+            limit {
+              memoryLimit
+              sourceLimit
+              timeLimit
+            }
+            maxPoints
+            slug
+            tagList
+            title
+          }
+          ... on CourseLesson {
+            content
+            duration
+            difficulty
+            featureImage {
+              downloadUrl
+              filename
+              id
+              metadata
+              thumbnailUrl
+            }
+            id
+            maxPoints
+            slug
+            tagList
+            title
+          }
+          ... on GapFillExam {
+            content
+            description
+            difficulty
+            id
+            maxPoints
+            slug
+            tagList
+            title
+          }
+          ... on OrganizedExam {
+            canRunCode
+            content
+            description
+            difficulty
+            id
+            maxPoints
+            slug
+            tagList
+            title
+          }
+          ... on QuizExam {
+            description
+            difficulty
+            id
+            maxPoints
+            slug
+            tagList
+            title
+            quizQuestBridges {
+              id
+              quizQuest {
+                description
+                id
+                isSingleChoice
+                name
+                options {
+                  content
+                  id
+                }
+                title
+              }
+            }
+          }
+        }
+    }
+    pageInfo {
+      totalPages
+      totalCount
+      currentPage
+    }
+  }
+}
