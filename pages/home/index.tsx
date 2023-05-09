@@ -1,15 +1,13 @@
-import React from 'react'
-
 import { GetServerSideProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 
-const Home: React.FC = () => {
+const Home = () => {
   const { t } = useTranslation('common')
   return (
-    <div className="flex flex-col justify-center m-h-[100vh]">
-      {t('title')}
-    </div>
+    <div>{t('title')}</div>
   )
 }
 export const getServerSideProps: GetServerSideProps = async ({

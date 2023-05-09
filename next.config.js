@@ -1,9 +1,9 @@
-// const { i18n, localePath } = require("./next-i18next.config")
+const { i18n, localePath } = require("./next-i18next.config")
 module.exports = {
   output: 'standalone',
   reactStrictMode: true,
-  // i18n,
-  // localePath,
+  i18n,
+  localePath,
   rewrites: async () => [
   ],
   publicRuntimeConfig: {

@@ -2,13 +2,13 @@ import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query/react'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { baseAPI } from './services/baseApi'
-import orderSliceReducer, { orderSlice } from './slices/order'
+import demoSliceReducer, { demoSlice } from './slices/demo'
 
 export const store = configureStore({
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat(baseAPI.middleware),
   reducer: {
     [baseAPI.reducerPath]: baseAPI.reducer,
-    [orderSlice.name]: orderSliceReducer,
+    [demoSlice.name]: demoSliceReducer,
   },
 })
 
